@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Muse Tracker - Authorization</title></head>
+<body>
+<h1 id="title">Muse Tracker authorization</h1>
+<p id="msg">Reading the authorization result...</p>
+<p id="codebox" style="font-size:1.4em; font-weight:bold; word-break:break-all;"></p>
+<script>
+var p = new URLSearchParams(window.location.search);
+var code = p.get("code");
+var err = p.get("error");
+if (code) {
+  document.getElementById("title").textContent = "Almost done";
+  document.getElementById("msg").textContent =
+    "Copy this code and paste it to Bud in your Muse chat right away - it expires quickly:";
+  document.getElementById("codebox").textContent = code;
+} else if (err) {
+  document.getElementById("msg").textContent =
+    "Authorization was not completed: " + err + ". Tell Bud what this page says.";
+} else {
+  document.getElementById("msg").textContent =
+    "No authorization code in this URL. Start the sign-in link from Bud again.";
+}
+</script>
+</body></html>
